@@ -67,14 +67,8 @@
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="MySQLInstaller.Core">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Installer for Windows\MySQLInstaller.Core.dll</HintPath>
     </Reference>
@@ -99,12 +93,24 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="CustomConvention\Datetime2Convention.cs" />
-    <Compile Include="Migrations\201611091627471_n145.cs" />
-    <Compile Include="Migrations\201611091627471_n145.Designer.cs">
-      <DependentUpon>201611091627471_n145.cs</DependentUpon>
+    <Compile Include="Infrastucture\DatabaseFactory.cs" />
+    <Compile Include="Infrastucture\Disposable.cs" />
+    <Compile Include="Infrastucture\IDatabaseFactory .cs" />
+    <Compile Include="Infrastucture\IRepositoryBase.cs" />
+    <Compile Include="Infrastucture\IRepositoryBaseAsync.cs" />
+    <Compile Include="Infrastucture\IUnitOfWork.cs" />
+    <Compile Include="Infrastucture\RepositoryBase.cs" />
+    <Compile Include="Infrastucture\UnitOfWork.cs" />
+    <Compile Include="Migrations\201611130022157_123654.cs" />
+    <Compile Include="Migrations\201611130022157_123654.Designer.cs">
+      <DependentUpon>201611130022157_123654.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="modelMap\discutionGrouMapd.cs" />
+    <Compile Include="modelMap\GroupColloMap.cs" />
+    <Compile Include="modelMap\userMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\GroupRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -120,8 +126,8 @@
     <Folder Include="Configuration\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611091627471_n145.resx">
-      <DependentUpon>201611091627471_n145.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611130022157_123654.resx">
+      <DependentUpon>201611130022157_123654.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

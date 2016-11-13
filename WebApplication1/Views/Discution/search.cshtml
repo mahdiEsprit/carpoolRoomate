@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Domain.entity.DiscutionGroup>
+
+@{
+    ViewBag.Title = "search";
+}
+
+<h2>search</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm(""))
+
+{
+    <form role="form">
+        <div class="form-group">
+
+            <br />  @Html.TextBox("text")
+
+            </div>
+        <input type="submit" value="Save" class="btn btn-default" />
+        </form>
+}
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Titre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Text)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CollocationGroupId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserIden)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Titre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Text)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CollocationGroupId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserIden)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.DiscutionGroupId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.DiscutionGroupId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.DiscutionGroupId })
+                        </td>
+                    </tr>
+                }
+
+            </table>

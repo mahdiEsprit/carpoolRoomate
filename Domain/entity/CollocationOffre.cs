@@ -17,7 +17,6 @@ namespace Domain.entity
         public string Region { get; set; }
         public Adress adress { get; set; }
         public string Description { get; set; }
-        public virtual ICollection<Student> StudentsList { get; set; }
         public virtual ICollection<CollocationGroup> CollocationGroupList { get; set; }
     }
 }

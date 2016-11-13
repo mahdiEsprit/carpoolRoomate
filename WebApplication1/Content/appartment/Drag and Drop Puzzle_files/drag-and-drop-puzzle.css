@@ -1,0 +1,36 @@
+﻿@charset "UTF-8";
+/* CSS Document */
+
+body { width: 80em; }
+[draggable=true] {
+  -khtml-user-drag: element;
+  -webkit-user-drag: element; 
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+#frameHolder {
+	width: 42em;
+	float: left;
+}
+#puzzle-frame {
+	border: solid black 0.5em;
+	width: 60em;
+	height: 40em;
+}
+#puzzle-frame > div {
+	width: 20em;
+	height: 20em;
+	float: left;
+}
+#pieces {
+	width: 20em;
+	float: left;
+	margin-right: 0.5em;
+}
+.hover {
+	background-color: #eee;
+	border: dashed thin #ddd;
+}

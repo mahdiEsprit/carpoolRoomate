@@ -214,18 +214,47 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DiscutionController.cs" />
+    <Compile Include="Controllers\GroupCollocationController.cs" />
+    <Compile Include="Controllers\GroupCollocationController1.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ExtensionMethodsColl.cs" />
+    <Compile Include="Helpers\ExtensionMethodsTypeGroup.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DiscutionModel.cs" />
+    <Compile Include="Models\GoupColloModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\appartment\Drag and Drop Puzzle.html" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\basic-styles.css" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\drag-and-drop-puzzle.css" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\drag-and-drop-puzzle.js" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\ga.js" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\jquery.min.js" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\modernizr-1.7.min.js" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\puzzle-piece1.png" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\puzzle-piece10.png" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\puzzle-piece11.png" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\puzzle-piece12.png" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\puzzle-piece2.png" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\puzzle-piece3.png" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\puzzle-piece4.png" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\puzzle-piece5.png" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\puzzle-piece6.png" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\puzzle-piece7.png" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\puzzle-piece8.png" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\puzzle-piece9.png" />
+    <Content Include="Content\appartment\Drag and Drop Puzzle_files\webkitdragdrop.js" />
+    <Content Include="Content\appartment\drag-and-drop-puzzle.js" />
+    <Content Include="Content\appartment\html2canvas.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -286,6 +315,18 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Tamplet.cshtml" />
+    <Content Include="Views\GroupCollocation1\Create.cshtml" />
+    <Content Include="Views\Discution\Create.cshtml" />
+    <Content Include="Views\Discution\Index.cshtml" />
+    <Content Include="Views\GroupCollocation1\Details.cshtml" />
+    <Content Include="Views\Discution\Edit.cshtml" />
+    <Content Include="Views\Discution\search.cshtml" />
+    <Content Include="Views\GroupCollocation\Create.cshtml" />
+    <Content Include="Views\GroupCollocation\Details.cshtml" />
+    <Content Include="Views\GroupCollocation\Edit.cshtml" />
+    <Content Include="Views\GroupCollocation\Index.cshtml" />
+    <Content Include="Views\GroupCollocation\searchindex.cshtml" />
+    <Content Include="Views\GroupCollocation\GetMember.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -309,6 +350,17 @@
       <Project>{bd20d7be-6b98-4e8b-8931-9af158527137}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ServicePattern\ServicePattern.csproj">
+      <Project>{7ecbc5c4-dc2e-4bc5-a53e-0cfae31a65cb}</Project>
+      <Name>ServicePattern</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Services.csproj">
+      <Project>{751735d8-82fc-45cf-8b87-a1477c6fa2d3}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

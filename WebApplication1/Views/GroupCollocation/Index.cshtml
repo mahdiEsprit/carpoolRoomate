@@ -1,0 +1,52 @@
+﻿@model IEnumerable<GUI.Models.GoupColloModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Tamplet.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupeType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreDeMebre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupeType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreDeMebre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CollocationGroupId }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new {  id=item.CollocationGroupId })
+        </td>
+    </tr>
+}
+
+</table>

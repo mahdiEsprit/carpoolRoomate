@@ -1,0 +1,50 @@
+﻿@model Domain.entity.CollocationGroup
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Tamplet.cshtml";
+}
+<table> 
+    <tr> <td>
+    <h2>CollocationGroup: @Html.DisplayFor(model => model.Title)</h2>
+    <h4>@Html.DisplayNameFor(model => model.DateCreation)  @Html.DisplayFor(model => model.DateCreation)</h4>
+</td>
+        <td>
+            @using (Html.BeginForm("postMember", "GroupCollocation", new { id = ViewBag.Id }))
+            {
+
+                <input type="submit" class="btn btn-primary" value="+ Become Member" />
+
+            }
+        </td>
+    </tr>
+    <tr>
+    <thead>
+        <tr>
+           
+            <th></th>
+            <th>by </th>
+            
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (ViewBag.discutions != null)
+            {
+                foreach (var emp in (ViewBag.discutions as List<Domain.
+                    entity.DiscutionGroup>))
+                {
+                <tr>
+                    
+                    <td>@emp.Text</td>
+                    <td>@emp.UserIden</td>
+                    
+                </tr>
+            }
+        }
+
+    </tbody>
+
+    
+    </table>

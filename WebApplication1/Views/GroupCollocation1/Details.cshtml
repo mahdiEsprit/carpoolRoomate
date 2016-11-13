@@ -1,0 +1,29 @@
+﻿@model Domain.entity.CollocationGroup
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CollocationGroup</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreation)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CollocationGroupId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

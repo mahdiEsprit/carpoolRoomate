@@ -9,11 +9,16 @@ namespace Domain.entity
 {
   public  class DiscutionGroup
     {
-        [Key]
+        
         public int DiscutionGroupId { get; set; }
         public string Titre { get; set; }
         public string Text { get; set; }
-        public string CollocationGroupId { get; set; }
+        public int CollocationGroupId { get; set; }
+
+
         public virtual CollocationGroup collocationGroup { get; set; }
-    }
+
+        public string UserIden { get; set; }
+        public virtual User user  { get; set; }
+}
 }

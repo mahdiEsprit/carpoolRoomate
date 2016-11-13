@@ -1,4 +1,5 @@
 ﻿using Data.CustomConventions;
+using Data.modelMap;
 using Domain;
 using Domain.entity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -41,6 +42,11 @@ namespace Data
             modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.PluralizingTableNameConvention>();
             base.OnModelCreating(modelBuilder);
             //modelBuilder.Conventions.Add(new Datetime2Convention());
+            modelBuilder.Configurations.Add(new discutionGrouMapd().ToTable("discution"));
+            modelBuilder.Configurations.Add(new userMap().ToTable("user"));
+            modelBuilder.Configurations.Add(new GroupColloMap().ToTable("GroupCollocation"));
+
+
         }
     }
 }

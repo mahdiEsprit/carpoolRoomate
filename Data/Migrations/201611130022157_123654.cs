@@ -3,7 +3,7 @@ namespace Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class n145 : DbMigration
+    public partial class _123654 : DbMigration
     {
         public override void Up()
         {
@@ -17,11 +17,11 @@ namespace Data.Migrations
                         StudentId = c.String(maxLength: 128, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.AlertId)
-                .ForeignKey("dbo.AspNetUsers", t => t.StudentId)
+                .ForeignKey("dbo.user", t => t.StudentId)
                 .Index(t => t.StudentId);
             
             CreateTable(
-                "dbo.AspNetUsers",
+                "dbo.user",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
@@ -31,7 +31,7 @@ namespace Data.Migrations
                         CreateDate = c.DateTime(nullable: false, precision: 0),
                         RIB = c.String(unicode: false),
                         Gender = c.String(unicode: false),
-                        Email = c.String(maxLength: 254, storeType: "nvarchar"),
+                        Email = c.String(unicode: false),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(unicode: false),
                         SecurityStamp = c.String(unicode: false),
@@ -41,7 +41,7 @@ namespace Data.Migrations
                         LockoutEndDateUtc = c.DateTime(precision: 0),
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
-                        UserName = c.String(nullable: false, maxLength: 254, storeType: "nvarchar"),
+                        UserName = c.String(unicode: false),
                         Country = c.String(unicode: false),
                         Street = c.String(unicode: false),
                         MainActivity = c.String(unicode: false),
@@ -55,7 +55,6 @@ namespace Data.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.CollocationOffre", t => t.CollocationOffreId, cascadeDelete: true)
-                .Index(t => t.UserName, unique: true, name: "UserNameIndex")
                 .Index(t => t.CollocationOffreId);
             
             CreateTable(
@@ -63,22 +62,28 @@ namespace Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        UserId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        UserId = c.String(maxLength: 128, storeType: "nvarchar"),
                         ClaimType = c.String(unicode: false),
                         ClaimValue = c.String(unicode: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.user", t => t.UserId)
                 .Index(t => t.UserId);
             
             CreateTable(
-                "dbo.CollocationGroup",
+                "dbo.GroupCollocation",
                 c => new
                     {
                         CollocationGroupId = c.Int(nullable: false, identity: true),
                         DateCreation = c.DateTime(nullable: false, precision: 0),
+                        NombreDeMebre = c.Int(nullable: false),
+                        Title = c.String(unicode: false),
+                        GroupeType = c.String(unicode: false),
+                        Student_Id = c.String(maxLength: 128, storeType: "nvarchar"),
                     })
-                .PrimaryKey(t => t.CollocationGroupId);
+                .PrimaryKey(t => t.CollocationGroupId)
+                .ForeignKey("dbo.user", t => t.Student_Id)
+                .Index(t => t.Student_Id);
             
             CreateTable(
                 "dbo.CollocationOffre",
@@ -96,18 +101,20 @@ namespace Data.Migrations
                 .PrimaryKey(t => t.CollocationOffreId);
             
             CreateTable(
-                "dbo.DiscutionGroup",
+                "dbo.discution",
                 c => new
                     {
                         DiscutionGroupId = c.Int(nullable: false, identity: true),
                         Titre = c.String(unicode: false),
                         Text = c.String(unicode: false),
-                        CollocationGroupId = c.String(unicode: false),
-                        collocationGroup_CollocationGroupId = c.Int(),
+                        CollocationGroupId = c.Int(nullable: false),
+                        UserIden = c.String(maxLength: 128, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.DiscutionGroupId)
-                .ForeignKey("dbo.CollocationGroup", t => t.collocationGroup_CollocationGroupId)
-                .Index(t => t.collocationGroup_CollocationGroupId);
+                .ForeignKey("dbo.GroupCollocation", t => t.CollocationGroupId, cascadeDelete: true)
+                .ForeignKey("dbo.user", t => t.UserIden)
+                .Index(t => t.CollocationGroupId)
+                .Index(t => t.UserIden);
             
             CreateTable(
                 "dbo.AspNetUserLogins",
@@ -118,7 +125,7 @@ namespace Data.Migrations
                         UserId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.user", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
             CreateTable(
@@ -129,8 +136,8 @@ namespace Data.Migrations
                         RoleId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.user", t => t.UserId, cascadeDelete: true)
                 .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
             
@@ -150,7 +157,7 @@ namespace Data.Migrations
                         AppartementOwnerId = c.String(maxLength: 128, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.AppartementId)
-                .ForeignKey("dbo.AspNetUsers", t => t.AppartementOwnerId)
+                .ForeignKey("dbo.user", t => t.AppartementOwnerId)
                 .Index(t => t.AppartementOwnerId);
             
             CreateTable(
@@ -158,7 +165,7 @@ namespace Data.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                        Name = c.String(nullable: false, maxLength: 254, storeType: "nvarchar"),
+                        Name = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
@@ -172,41 +179,43 @@ namespace Data.Migrations
                     })
                 .PrimaryKey(t => new { t.CollocationOffre_CollocationOffreId, t.CollocationGroup_CollocationGroupId })
                 .ForeignKey("dbo.CollocationOffre", t => t.CollocationOffre_CollocationOffreId, cascadeDelete: true)
-                .ForeignKey("dbo.CollocationGroup", t => t.CollocationGroup_CollocationGroupId, cascadeDelete: true)
+                .ForeignKey("dbo.GroupCollocation", t => t.CollocationGroup_CollocationGroupId, cascadeDelete: true)
                 .Index(t => t.CollocationOffre_CollocationOffreId)
                 .Index(t => t.CollocationGroup_CollocationGroupId);
             
             CreateTable(
-                "dbo.CollocationGroupStudent",
+                "dbo.ColloGroups_users",
                 c => new
                     {
-                        CollocationGroup_CollocationGroupId = c.Int(nullable: false),
-                        Student_Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        user_fk = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        group_fk = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.CollocationGroup_CollocationGroupId, t.Student_Id })
-                .ForeignKey("dbo.CollocationGroup", t => t.CollocationGroup_CollocationGroupId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.Student_Id, cascadeDelete: true)
-                .Index(t => t.CollocationGroup_CollocationGroupId)
-                .Index(t => t.Student_Id);
+                .PrimaryKey(t => new { t.user_fk, t.group_fk })
+                .ForeignKey("dbo.user", t => t.user_fk, cascadeDelete: true)
+                .ForeignKey("dbo.GroupCollocation", t => t.group_fk, cascadeDelete: true)
+                .Index(t => t.user_fk)
+                .Index(t => t.group_fk);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Appartement", "AppartementOwnerId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.CollocationGroupStudent", "Student_Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.CollocationGroupStudent", "CollocationGroup_CollocationGroupId", "dbo.CollocationGroup");
-            DropForeignKey("dbo.DiscutionGroup", "collocationGroup_CollocationGroupId", "dbo.CollocationGroup");
-            DropForeignKey("dbo.AspNetUsers", "CollocationOffreId", "dbo.CollocationOffre");
-            DropForeignKey("dbo.CollocationOffreCollocationGroup", "CollocationGroup_CollocationGroupId", "dbo.CollocationGroup");
+            DropForeignKey("dbo.user", "CollocationOffreId", "dbo.CollocationOffre");
+            DropForeignKey("dbo.GroupCollocation", "Student_Id", "dbo.user");
+            DropForeignKey("dbo.discution", "UserIden", "dbo.user");
+            DropForeignKey("dbo.Appartement", "AppartementOwnerId", "dbo.user");
+            DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.user");
+            DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.user");
+            DropForeignKey("dbo.ColloGroups_users", "group_fk", "dbo.GroupCollocation");
+            DropForeignKey("dbo.ColloGroups_users", "user_fk", "dbo.user");
+            DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.user");
+            DropForeignKey("dbo.discution", "CollocationGroupId", "dbo.GroupCollocation");
+            DropForeignKey("dbo.CollocationOffreCollocationGroup", "CollocationGroup_CollocationGroupId", "dbo.GroupCollocation");
             DropForeignKey("dbo.CollocationOffreCollocationGroup", "CollocationOffre_CollocationOffreId", "dbo.CollocationOffre");
-            DropForeignKey("dbo.Alert", "StudentId", "dbo.AspNetUsers");
-            DropIndex("dbo.CollocationGroupStudent", new[] { "Student_Id" });
-            DropIndex("dbo.CollocationGroupStudent", new[] { "CollocationGroup_CollocationGroupId" });
+            DropForeignKey("dbo.Alert", "StudentId", "dbo.user");
+            DropIndex("dbo.ColloGroups_users", new[] { "group_fk" });
+            DropIndex("dbo.ColloGroups_users", new[] { "user_fk" });
             DropIndex("dbo.CollocationOffreCollocationGroup", new[] { "CollocationGroup_CollocationGroupId" });
             DropIndex("dbo.CollocationOffreCollocationGroup", new[] { "CollocationOffre_CollocationOffreId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
@@ -214,22 +223,23 @@ namespace Data.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
-            DropIndex("dbo.DiscutionGroup", new[] { "collocationGroup_CollocationGroupId" });
+            DropIndex("dbo.discution", new[] { "UserIden" });
+            DropIndex("dbo.discution", new[] { "CollocationGroupId" });
+            DropIndex("dbo.GroupCollocation", new[] { "Student_Id" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
-            DropIndex("dbo.AspNetUsers", new[] { "CollocationOffreId" });
-            DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.user", new[] { "CollocationOffreId" });
             DropIndex("dbo.Alert", new[] { "StudentId" });
-            DropTable("dbo.CollocationGroupStudent");
+            DropTable("dbo.ColloGroups_users");
             DropTable("dbo.CollocationOffreCollocationGroup");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Appartement");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
-            DropTable("dbo.DiscutionGroup");
+            DropTable("dbo.discution");
             DropTable("dbo.CollocationOffre");
-            DropTable("dbo.CollocationGroup");
+            DropTable("dbo.GroupCollocation");
             DropTable("dbo.AspNetUserClaims");
-            DropTable("dbo.AspNetUsers");
+            DropTable("dbo.user");
             DropTable("dbo.Alert");
         }
     }

@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Domain.entity.DiscutionGroup>
+
+@{
+    ViewBag.Title = "Groupe Page";
+    Layout = "~/Views/Shared/Tamplet.cshtml";
+}
+
+<h2> @ViewBag.titre </h2>
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>
+                <div>
+                    @Html.TextArea("textarea")
+
+                </div>
+            </td>
+            <td>
+                <input type="submit" value="Add Status" id="submit" />
+            </td>
+            <td>
+
+            </td>
+            <td></td>
+            <td><button > + Become Member @Html.ActionLink("Update Status", "Edit", new { id = ViewBag.id }) </button> </td>
+        </tr>
+        
+    </table>
+}
+<table class="table">
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+        </tr>
+
+    @foreach (var item in Model) {
+
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+
+            </td>
+            <td>
+                <div class="modal col-md-8 " id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+
+                            <div class="modal-body" style="padding:40px 40px;">
+                                @using (Html.BeginForm("Edit" ,"DiscutionGroup", new { id = item.DiscutionGroupId  }, FormMethod.Post))
+
+                                {
+                                    <form role="form">
+                                        <div class="form-group">
+                                            
+                                          <br />  @*@Html.TextBox("text")*@
+                                           @* @Html.TextBoxFor(model => item.DiscutionGroupId)*@
+                                           
+                                            
+                                                @Html.LabelFor(model => item.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => item.Text, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => item.Text, "", new { @class = "text-danger" })
+                                                </div>
+                                           
+                                           @* <input type="text" id="text" />*@
+                                        </div>
+                                        
+                                        <button type="submit" class="btn btn-success " id="submit">Update Status  @*@Html.ActionLink("Update Status", "Edit", new { id = item.DiscutionGroupId , })*@</button>
+                                    </form>
+                                }
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+               
+                
+                
+            </td>
+            <td >
+              <button id="mybtn"> edit</button> 
+            </td>
+            <td >
+               
+                @Html.ActionLink("Contact with Email", "Details", new { id=item.DiscutionGroupId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.DiscutionGroupId })
+            </td>
+        </tr>
+    }
+    
+</table>
+<script>
+    $(document).ready(function () {
+        $("#mybtn").click(function () {
+            $("#myModal").modal();
+        });
+    });
+</script>
+<link rel="stylesheet" href="@Url.Content("~/Scripts/")/bootstrap.min.js">
+<link rel="stylesheet" href="@Url.Content("~/Scripts/")/jquery.min.js">

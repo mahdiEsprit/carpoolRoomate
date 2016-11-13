@@ -1,0 +1,74 @@
+﻿
+<!DOCTYPE HTML>
+<html class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag and Drop Puzzle</title>
+    <link rel="stylesheet" href="basic-styles.css">
+    <script src="../Drag and Drop Puzzle_files/modernizr-1.7.min.js"></script>
+    <script src="../Drag and Drop Puzzle_files/webkitdragdrop.js"></script>
+    <script src="../Drag and Drop Puzzle_files/jquery.min.js"></script>
+    <link href="../Drag and Drop Puzzle_files/drag-and-drop-puzzle.css" rel="stylesheet">
+    <script>
+var iOS = !!navigator.userAgent.match('iPhone OS') || !!navigator.userAgent.match('iPad');
+if (iOS) { document.write("<link rel=stylesheet href=drag-and-drop-puzzle-ios.css>"); }
+    </script>
+</head>
+
+<body>
+    <h1>Drag and Drop Puzzle</h1>
+    <p>
+        Drag the puzzle pieces into the puzzle frame
+    </p>
+    <div id="pieces">
+        <h2>Pieces</h2>
+    </div>
+    <div id="frameHolder">
+        <h2>Frame</h2>
+        <div id="puzzle-frame">
+            <div id="place1" ondrop="drop(this, event);" ondragenter="return false;" ondragover="return false;"></div>
+            <div id="place2" ondrop="drop(this, event);" ondragenter="return false;" ondragover="return false;"></div>
+            <div id="place3" ondrop="drop(this, event);" ondragenter="return false;" ondragover="return false;"></div>
+            <div id="place4" ondrop="drop(this, event);" ondragenter="return false;" ondragover="return false;"></div>
+            <div id="place5" ondrop="drop(this, event);" ondragenter="return false;" ondragover="return false;"></div>
+            <div id="place6" ondrop="drop(this, event);" ondragenter="return false;" ondragover="return false;"></div>
+            <div id="place7" ondrop="drop(this, event);" ondragenter="return false;" ondragover="return false;"></div>
+            <div id="place8" ondrop="drop(this, event);" ondragenter="return false;" ondragover="return false;"></div>
+            <div id="place9" ondrop="drop(this, event);" ondragenter="return false;" ondragover="return false;"></div>
+            <div id="place10" ondrop="drop(this, event);" ondragenter="return false;" ondragover="return false;"></div>
+            <div id="place11" ondrop="drop(this, event);" ondragenter="return false;" ondragover="return false;"></div>
+            <div id="place12" ondrop="drop(this, event);" ondragenter="return false;" ondragover="return false;"></div>
+        </div>
+
+
+    </div>
+
+    <script src="drag-and-drop-puzzle.js">
+    </script>
+
+    <div class="AW-Form-1888741813"></div>
+    <script type="text/javascript">
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "http://forms.aweber.com/form/13/1888741813.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, "script", "aweber-wjs-p0lcyq6pb"));
+    </script>
+
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-550582-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+    </script>
+</body>
+</html>

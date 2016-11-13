@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Domain.entity.CollocationGroup>
+
+@{
+    ViewBag.Title = "searchindex";
+    Layout = "~/Views/Shared/Tamplet.cshtml";
+}
+
+<h2>searchindex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+<table>
+
+    <tr>
+
+        <td>
+
+            <div>
+
+                Search by genre: @Html.TextBox("searchString")
+
+            </div>
+
+        </td>
+
+        <td>
+
+            <input type="submit" value="Search" id="submit" />
+
+        </td>
+
+    </tr>
+
+</table>}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreDeMebre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupeType)
+        </th>
+        <th></th>
+    </tr>
+   
+
+    @if (ViewBag.k != 1)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreDeMebre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GroupeType)
+                </td>
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.CollocationGroupId }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.CollocationGroupId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.CollocationGroupId })
+                    </td>*@
+            </tr>
+        }
+    }
+   
+
+
+    
+
+
+
+
+</table>
